@@ -22,23 +22,23 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto createProduct(ProductDto productDto) {
-        Product product = toEntity(productDto);
+        Product product = mapToEntity(productDto);
         Product savedProduct =  productRepository.save(product);
         log.info("Product is saved with id {}", savedProduct.getId());
-        return toDto(savedProduct);
+        return mapToDto(savedProduct);
     }
 
     @Override
     public List<ProductDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        return products.stream().map(this::toDto).collect(Collectors.toList());
+        return products.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
-    private Product toEntity(ProductDto productDto) {
+    private Product mapToEntity(ProductDto productDto) {
         return modelMapper.map(productDto, Product.class);
     }
 
-    private ProductDto toDto(Product product) {
+    private ProductDto mapToDto(Product product) {
         return modelMapper.map(product, ProductDto.class);
     }
 }
