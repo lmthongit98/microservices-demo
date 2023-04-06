@@ -1,7 +1,6 @@
 package com.tma.inventoryservice.service.impl;
 
 import com.tma.inventoryservice.dto.InventoryResponse;
-import com.tma.inventoryservice.model.Inventory;
 import com.tma.inventoryservice.repository.InventoryRepository;
 import com.tma.inventoryservice.service.InventoryService;
 import lombok.AllArgsConstructor;
