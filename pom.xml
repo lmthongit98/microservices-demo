@@ -29,6 +29,7 @@
         <module>gateway-service</module>
 		<module>config-service</module>
         <module>monitor-admin</module>
+        <module>auth-service</module>
     </modules>
 
 
