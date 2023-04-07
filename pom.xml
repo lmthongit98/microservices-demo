@@ -25,7 +25,8 @@
 		<module>inventory-service</module>
 		<module>discovery-service</module>
         <module>gateway-service</module>
-    </modules>
+		<module>config-service</module>
+	</modules>
 
 
 	<build>
