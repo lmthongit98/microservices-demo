@@ -27,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void placeOrder(OrderRequest orderRequest) {
+        log.info("Starting order for order request {}", orderRequest);
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
         List<OrderLineItems> orderLineItems = orderRequest.getOrderLineItemsDtoList().stream().map(this::mapToEntity).toList();
@@ -41,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
             log.error("Getting exception while calling inventory api", e);
             throw e;
         }
-        log.info("inventoryResponses: {}", inventoryResponses);
+        log.info("Inventory check is: {}", inventoryResponses);
         boolean allProductsInStock = inventoryResponses.stream().allMatch(InventoryResponse::isInStock);
         if (skuCodes.size() != inventoryResponses.size() || !allProductsInStock) {
             throw new IllegalArgumentException("Product is not in stock, please try again later");
