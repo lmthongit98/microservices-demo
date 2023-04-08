@@ -4,6 +4,7 @@ import com.tma.productservice.dto.ProductDto;
 import com.tma.productservice.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class ProductController {
 
     private final ProductService productService;
 
+    @PreAuthorize("#oauth2.hasScope('write') && hasRole('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductDto createProduct(@RequestBody ProductDto productDto) {
