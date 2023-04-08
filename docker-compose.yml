@@ -1,7 +1,7 @@
 version: '3.7'
 services:
-  ipkinervice:
-    container_name: zipkinervice
+  zipkinservice:
+    container_name: zipkinservice
     image: openzipkin/zipkin
     ports:
       - "9411:9411"
