@@ -1,6 +1,6 @@
 package com.tma.orderservice.service.impl;
 
-import com.tma.orderservice.client.RestClient;
+import com.tma.orderservice.client.InventoryClient;
 import com.tma.orderservice.dto.InventoryResponse;
 import com.tma.orderservice.dto.OrderLineItemsDto;
 import com.tma.orderservice.dto.OrderRequest;
@@ -23,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final ModelMapper modelMapper;
     private final OrderRepository orderRepository;
-    private final RestClient restClient;
+    private final InventoryClient inventoryClient;
 
     @Override
     public void placeOrder(OrderRequest orderRequest) {
@@ -34,11 +34,16 @@ public class OrderServiceImpl implements OrderService {
         List<String> skuCodes = order.getOrderLineItemsList().stream().map(OrderLineItems::getSkuCode).toList();
 
         // Call inventory service, and place order if product is in stock
-        List<InventoryResponse> inventoryResponses = restClient.isInStock(skuCodes);
+        List<InventoryResponse> inventoryResponses;
+        try {
+            inventoryResponses = inventoryClient.isInStock(skuCodes);
+        } catch (Exception e) {
+            log.error("Getting exception while calling inventory api", e);
+            throw e;
+        }
         log.info("inventoryResponses: {}", inventoryResponses);
         boolean allProductsInStock = inventoryResponses.stream().allMatch(InventoryResponse::isInStock);
         if (skuCodes.size() != inventoryResponses.size() || !allProductsInStock) {
-            log.info("Product is not in stock, please try again later");
             throw new IllegalArgumentException("Product is not in stock, please try again later");
         }
         orderRepository.save(order);

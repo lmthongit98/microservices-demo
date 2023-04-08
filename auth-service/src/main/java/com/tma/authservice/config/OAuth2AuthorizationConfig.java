@@ -40,7 +40,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 .and()
                 .withClient("order_service").secret(passwordEncoder.encode("123"))
                 .authorizedGrantTypes("client_credentials")
-                .scopes("notification", "log")
+                .scopes("notification", "read")
                 .accessTokenValiditySeconds(300); // 5 minutes
     }
 

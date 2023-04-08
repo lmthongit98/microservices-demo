@@ -16,7 +16,7 @@ public class InventoryController {
 
     private final InventoryService inventoryService;
 
-    @PreAuthorize("#oauth2.hasScope('read') && hasRole('ADMIN')")
+    @PreAuthorize("#oauth2.hasScope('read')")
     @GetMapping("/{sku-code}")
     @ResponseStatus(HttpStatus.OK)
     public List<InventoryResponse> isInStock(@PathVariable("sku-code") List<String> skuCodes) {
