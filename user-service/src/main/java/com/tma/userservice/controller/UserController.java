@@ -69,4 +69,10 @@ public class UserController {
         return principal;
     }
 
+    @PreAuthorize("#oauth2.hasScope('read') && isAuthenticated()")
+    @GetMapping("/info")
+    public UserDto getUserInfo(Principal principal) {
+        return userService.getUserByUsername(principal.getName());
+    }
+
 }

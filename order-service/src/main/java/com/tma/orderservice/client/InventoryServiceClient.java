@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @FeignClient(name = "inventory-service", configuration = InventoryFeignClientConfiguration.class)
-public interface InventoryClient {
+public interface InventoryServiceClient {
 
     @GetMapping("/api/inventory/{sku-code}")
     List<InventoryResponse> isInStock(@PathVariable("sku-code") List<String> skuCodes);

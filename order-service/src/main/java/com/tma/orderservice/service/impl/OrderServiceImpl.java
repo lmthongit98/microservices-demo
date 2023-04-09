@@ -1,9 +1,10 @@
 package com.tma.orderservice.service.impl;
 
-import com.tma.orderservice.client.InventoryClient;
+import com.tma.orderservice.client.InventoryServiceClient;
 import com.tma.orderservice.dto.InventoryResponse;
 import com.tma.orderservice.dto.OrderLineItemsDto;
 import com.tma.orderservice.dto.OrderRequest;
+import com.tma.orderservice.dto.UserDto;
 import com.tma.orderservice.model.Order;
 import com.tma.orderservice.model.OrderLineItems;
 import com.tma.orderservice.repository.OrderRepository;
@@ -23,10 +24,10 @@ public class OrderServiceImpl implements OrderService {
 
     private final ModelMapper modelMapper;
     private final OrderRepository orderRepository;
-    private final InventoryClient inventoryClient;
+    private final InventoryServiceClient inventoryServiceClient;
 
     @Override
-    public void placeOrder(OrderRequest orderRequest) {
+    public void placeOrder(OrderRequest orderRequest, UserDto userDto) {
         log.info("Starting order for order request {}", orderRequest);
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
@@ -37,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
         // Call inventory service, and place order if product is in stock
         List<InventoryResponse> inventoryResponses;
         try {
-            inventoryResponses = inventoryClient.isInStock(skuCodes);
+            inventoryResponses = inventoryServiceClient.isInStock(skuCodes);
         } catch (Exception e) {
             log.error("Getting exception while calling inventory api", e);
             throw e;
@@ -48,6 +49,8 @@ public class OrderServiceImpl implements OrderService {
             throw new IllegalArgumentException("Product is not in stock, please try again later");
         }
         orderRepository.save(order);
+
+        // send notification to user
     }
 
     private OrderLineItems mapToEntity(OrderLineItemsDto orderLineItemsDto) {

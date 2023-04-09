@@ -1,6 +1,8 @@
 package com.tma.orderservice.controller;
 
+import com.tma.orderservice.client.UserServiceClient;
 import com.tma.orderservice.dto.OrderRequest;
+import com.tma.orderservice.dto.UserDto;
 import com.tma.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,11 +16,14 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    private final UserServiceClient userServiceClient;
+
     @PreAuthorize("#oauth2.hasScope('write') && isAuthenticated()")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String placeOrder(@RequestBody OrderRequest orderRequest) {
-        orderService.placeOrder(orderRequest);
+    public String placeOrder(@RequestBody OrderRequest orderRequest, @RequestHeader("Authorization") String bearerToken) {
+        UserDto userDto = userServiceClient.getUserInfo(bearerToken);
+        orderService.placeOrder(orderRequest, userDto);
         return "Order placed successfully";
     }
 

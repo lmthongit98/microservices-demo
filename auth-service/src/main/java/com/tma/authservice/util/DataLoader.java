@@ -23,12 +23,14 @@ public class DataLoader implements CommandLineRunner {
         User user1 = new User();
         user1.setName("admin");
         user1.setUsername("admin");
+        user1.setEmail("lmthong98@gmail.com");
         user1.setPassword(passwordEncoder.encode("admin"));
         user1.setRoles(Set.of("ROLE_USER", "ROLE_ADMIN"));
 
         User user2 = new User();
         user2.setName("thong");
         user2.setUsername("lminhthong");
+        user2.setEmail("lmthong98@gmail.com");
         user2.setPassword(passwordEncoder.encode("123"));
         user2.setRoles(Set.of("ROLE_USER"));
 

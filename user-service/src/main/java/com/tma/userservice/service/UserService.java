@@ -55,6 +55,11 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public UserDto getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        return mapToDto(user);
+    }
+
     private void validateUser(UserDto user) {
         if(!(StringUtils.isNotBlank(user.getUsername()) && StringUtils.isNotBlank(user.getPassword()))) {
             throw new BadRequestException("Username or password is invalid!");
