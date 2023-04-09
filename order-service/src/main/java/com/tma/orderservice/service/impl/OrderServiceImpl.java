@@ -1,14 +1,14 @@
 package com.tma.orderservice.service.impl;
 
+import com.tma.common.constants.EmailConstant;
 import com.tma.common.dto.email.EmailId;
 import com.tma.common.dto.inventory.InventoryResponse;
 import com.tma.common.dto.user.UserDto;
 import com.tma.common.service.EmailService;
 import com.tma.orderservice.client.InventoryServiceClient;
-import com.tma.orderservice.constant.OrderConstant;
+import com.tma.orderservice.dto.OrderEmailTemplate;
 import com.tma.orderservice.dto.OrderLineItemsDto;
 import com.tma.orderservice.dto.OrderRequest;
-import com.tma.orderservice.dto.OrderEmailTemplate;
 import com.tma.orderservice.model.Order;
 import com.tma.orderservice.model.OrderLineItems;
 import com.tma.orderservice.repository.OrderRepository;
@@ -56,10 +56,10 @@ public class OrderServiceImpl implements OrderService {
         Order savedOrder = orderRepository.save(order);
 
         // send notification to user
-        OrderEmailTemplate template = new OrderEmailTemplate(OrderConstant.ORDER_EMAIL_TEMPLATE, savedOrder);
+        OrderEmailTemplate template = new OrderEmailTemplate(EmailConstant.ORDER_EMAIL_TEMPLATE, savedOrder);
         EmailId toEmail = new EmailId(userDto.getName(), userDto.getEmail());
-        EmailId fromEmail =  new EmailId("", OrderConstant.NO_REPLY);
-        String subject = OrderConstant.EMAIL_SUBJECT.replace("{}", savedOrder.getOrderNumber());
+        EmailId fromEmail =  new EmailId("", EmailConstant.NO_REPLY);
+        String subject = EmailConstant.ORDER_EMAIL_SUBJECT.replace("{}", savedOrder.getOrderNumber());
         emailService.sendMail(template, toEmail, fromEmail, subject);
         log.info("Email sent.");
     }

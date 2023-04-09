@@ -1,13 +1,18 @@
 package com.tma.userservice.service;
 
+import com.tma.common.constants.EmailConstant;
+import com.tma.common.dto.email.EmailId;
 import com.tma.common.dto.user.UserDto;
 import com.tma.common.entity.User;
+import com.tma.common.service.EmailService;
+import com.tma.userservice.email.UserRegisterEmailTemplate;
 import com.tma.userservice.exception.BadRequestException;
 import com.tma.userservice.exception.ResourceNotFoundException;
 import com.tma.userservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -19,18 +24,22 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
+    private final EmailService emailService;
 
     public UserDto register(UserDto userDto) {
         validateUser(userDto);
         User user = mapToEntity(userDto);
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         user.setRoles(Collections.singleton("ROLE_USER"));
         User savedUser = userRepository.save(user);
+        sendEmail(userDto);
         return mapToDto(savedUser);
     }
 
     public UserDto addUser(UserDto userDto) {
         validateUser(userDto);
         User user = mapToEntity(userDto);
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         return mapToDto(savedUser);
     }
@@ -68,6 +77,14 @@ public class UserService {
         if (isUsernameExist) {
             throw new BadRequestException("Username is exist!");
         }
+    }
+
+    private void sendEmail(UserDto userDto) {
+        UserRegisterEmailTemplate template = new UserRegisterEmailTemplate(EmailConstant.REGISTER_USER_EMAIL_TEMPLATE, userDto);
+        EmailId toEmail = new EmailId(userDto.getName(), userDto.getEmail());
+        EmailId fromEmail =  new EmailId("", EmailConstant.NO_REPLY);
+        String subject = EmailConstant.REGISTER_USER_EMAIL_SUBJECT;
+        emailService.sendMail(template, toEmail, fromEmail, subject);
     }
 
     private UserDto mapToDto(User user) {
