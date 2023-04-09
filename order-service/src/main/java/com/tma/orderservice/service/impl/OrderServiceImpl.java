@@ -1,18 +1,21 @@
 package com.tma.orderservice.service.impl;
 
 import com.tma.orderservice.client.InventoryServiceClient;
+import com.tma.orderservice.constant.OrderConstant;
 import com.tma.orderservice.dto.InventoryResponse;
 import com.tma.orderservice.dto.OrderLineItemsDto;
 import com.tma.orderservice.dto.OrderRequest;
 import com.tma.orderservice.dto.UserDto;
+import com.tma.orderservice.dto.email.EmailId;
+import com.tma.orderservice.dto.email.OrderEmailTemplate;
 import com.tma.orderservice.model.Order;
 import com.tma.orderservice.model.OrderLineItems;
 import com.tma.orderservice.repository.OrderRepository;
+import com.tma.orderservice.service.EmailService;
 import com.tma.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     private final ModelMapper modelMapper;
     private final OrderRepository orderRepository;
     private final InventoryServiceClient inventoryServiceClient;
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final EmailService emailService;
 
     @Override
     public void placeOrder(OrderRequest orderRequest, UserDto userDto) {
@@ -50,10 +53,15 @@ public class OrderServiceImpl implements OrderService {
         if (skuCodes.size() != inventoryResponses.size() || !allProductsInStock) {
             throw new IllegalArgumentException("Product is not in stock, please try again later");
         }
-        orderRepository.save(order);
+        Order savedOrder = orderRepository.save(order);
 
         // send notification to user
-        kafkaTemplate.send("topic", "placed order successfully");
+        OrderEmailTemplate template = new OrderEmailTemplate(OrderConstant.ORDER_EMAIL_TEMPLATE, savedOrder);
+        EmailId toEmail = new EmailId(userDto.getName(), userDto.getEmail());
+        EmailId fromEmail =  new EmailId("", OrderConstant.NO_REPLY);
+        String subject = OrderConstant.EMAIL_SUBJECT.replace("{}", savedOrder.getOrderNumber());
+        emailService.sendMail(template, toEmail, fromEmail, subject);
+        log.info("Email sent.");
     }
 
     private OrderLineItems mapToEntity(OrderLineItemsDto orderLineItemsDto) {

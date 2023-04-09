@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+<p>Hello <span th:text="${name}"></span>
+<p>Here is the list of products you have ordered</p>
+<table th:style="'border:1px solid black;'">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>skuCode</th>
+        <th>price</th>
+        <th>quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${order.get('orderLineItemsList')}">
+        <td th:text="${entry.get('id')}"></td>
+        <td th:text="${entry.get('skuCode')}"></td>
+        <td th:text="${entry.get('price')}"></td>
+        <td th:text="${entry.get('quantity')}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>
