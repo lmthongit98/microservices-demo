@@ -1,8 +1,8 @@
 package com.tma.orderservice.controller;
 
+import com.tma.common.dto.user.UserDto;
 import com.tma.orderservice.client.UserServiceClient;
 import com.tma.orderservice.dto.OrderRequest;
-import com.tma.orderservice.dto.UserDto;
 import com.tma.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

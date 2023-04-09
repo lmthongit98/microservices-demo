@@ -1,4 +1,4 @@
-package com.tma.orderservice.dto.email;
+package com.tma.common.dto.email;
 
 public enum MessageType {
     EMAIL,

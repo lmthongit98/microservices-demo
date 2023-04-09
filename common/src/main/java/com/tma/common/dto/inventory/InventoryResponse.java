@@ -1,4 +1,4 @@
-package com.tma.inventoryservice.dto;
+package com.tma.common.dto.inventory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,3 +13,4 @@ public class InventoryResponse {
     private String skuCode;
     private boolean isInStock;
 }
+

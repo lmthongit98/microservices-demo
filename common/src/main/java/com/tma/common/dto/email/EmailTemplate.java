@@ -1,4 +1,4 @@
-package com.tma.orderservice.dto.email;
+package com.tma.common.dto.email;
 
 public abstract class EmailTemplate implements MessageTemplate {
 

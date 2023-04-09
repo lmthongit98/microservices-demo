@@ -1,7 +1,10 @@
-package com.tma.orderservice.dto.email;
+package com.tma.common.dto.email;
 
 //import javax.validation.constraints.Pattern;
 
+import lombok.Data;
+
+@Data
 public class EmailId {
     private String fullName;
 //    @Pattern(

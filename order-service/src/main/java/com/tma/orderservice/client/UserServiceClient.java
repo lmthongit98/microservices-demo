@@ -1,6 +1,6 @@
 package com.tma.orderservice.client;
 
-import com.tma.orderservice.dto.UserDto;
+import com.tma.common.dto.user.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;

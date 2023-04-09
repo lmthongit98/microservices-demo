@@ -1,4 +1,4 @@
-package com.tma.authservice.entity;
+package com.tma.common.entity;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.tma.authservice.service;
 
-import com.tma.authservice.entity.User;
 import com.tma.authservice.repository.UserRepository;
+import com.tma.common.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

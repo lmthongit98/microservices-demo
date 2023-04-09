@@ -1,7 +1,7 @@
 package com.tma.userservice.service;
 
-import com.tma.userservice.dto.UserDto;
-import com.tma.userservice.entity.User;
+import com.tma.common.dto.user.UserDto;
+import com.tma.common.entity.User;
 import com.tma.userservice.exception.BadRequestException;
 import com.tma.userservice.exception.ResourceNotFoundException;
 import com.tma.userservice.repository.UserRepository;

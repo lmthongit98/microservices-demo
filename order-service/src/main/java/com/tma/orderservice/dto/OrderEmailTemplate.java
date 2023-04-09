@@ -1,5 +1,6 @@
-package com.tma.orderservice.dto.email;
+package com.tma.orderservice.dto;
 
+import com.tma.common.dto.email.EmailTemplate;
 import com.tma.orderservice.model.Order;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

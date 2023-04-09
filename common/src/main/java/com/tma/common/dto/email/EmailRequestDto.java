@@ -1,4 +1,4 @@
-package com.tma.notificationservice.dto.email;
+package com.tma.common.dto.email;
 
 import lombok.Data;
 

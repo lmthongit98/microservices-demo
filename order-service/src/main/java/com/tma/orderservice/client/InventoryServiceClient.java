@@ -1,6 +1,6 @@
 package com.tma.orderservice.client;
 
-import com.tma.orderservice.dto.InventoryResponse;
+import com.tma.common.dto.inventory.InventoryResponse;
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;

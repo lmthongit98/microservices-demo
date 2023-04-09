@@ -1,11 +1,12 @@
-package com.tma.orderservice.service.impl;
+package com.tma.common.service.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tma.orderservice.dto.email.EmailId;
-import com.tma.orderservice.dto.email.EmailRequestDto;
-import com.tma.orderservice.dto.email.EmailTemplate;
-import com.tma.orderservice.service.EmailService;
+
+import com.tma.common.dto.email.EmailId;
+import com.tma.common.dto.email.EmailRequestDto;
+import com.tma.common.dto.email.EmailTemplate;
+import com.tma.common.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;

@@ -1,17 +1,17 @@
 package com.tma.orderservice.service.impl;
 
+import com.tma.common.dto.email.EmailId;
+import com.tma.common.dto.inventory.InventoryResponse;
+import com.tma.common.dto.user.UserDto;
+import com.tma.common.service.EmailService;
 import com.tma.orderservice.client.InventoryServiceClient;
 import com.tma.orderservice.constant.OrderConstant;
-import com.tma.orderservice.dto.InventoryResponse;
 import com.tma.orderservice.dto.OrderLineItemsDto;
 import com.tma.orderservice.dto.OrderRequest;
-import com.tma.orderservice.dto.UserDto;
-import com.tma.orderservice.dto.email.EmailId;
-import com.tma.orderservice.dto.email.OrderEmailTemplate;
+import com.tma.orderservice.dto.OrderEmailTemplate;
 import com.tma.orderservice.model.Order;
 import com.tma.orderservice.model.OrderLineItems;
 import com.tma.orderservice.repository.OrderRepository;
-import com.tma.orderservice.service.EmailService;
 import com.tma.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

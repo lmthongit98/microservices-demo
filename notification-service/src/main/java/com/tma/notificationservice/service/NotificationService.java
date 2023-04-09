@@ -1,6 +1,6 @@
 package com.tma.notificationservice.service;
 
-import com.tma.notificationservice.dto.email.EmailRequestDto;
+import com.tma.common.dto.email.EmailRequestDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.tma.userservice.repository;
 
-import com.tma.userservice.entity.User;
+import com.tma.common.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

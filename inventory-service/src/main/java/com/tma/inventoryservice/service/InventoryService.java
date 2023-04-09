@@ -1,6 +1,6 @@
 package com.tma.inventoryservice.service;
 
-import com.tma.inventoryservice.dto.InventoryResponse;
+import com.tma.common.dto.inventory.InventoryResponse;
 
 import java.util.List;
 
