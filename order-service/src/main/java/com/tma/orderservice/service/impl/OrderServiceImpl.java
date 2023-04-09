@@ -12,6 +12,7 @@ import com.tma.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
     private final ModelMapper modelMapper;
     private final OrderRepository orderRepository;
     private final InventoryServiceClient inventoryServiceClient;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
     public void placeOrder(OrderRequest orderRequest, UserDto userDto) {
@@ -51,6 +53,7 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(order);
 
         // send notification to user
+        kafkaTemplate.send("topic", "placed order successfully");
     }
 
     private OrderLineItems mapToEntity(OrderLineItemsDto orderLineItemsDto) {
