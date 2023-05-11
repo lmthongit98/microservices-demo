@@ -1,6 +1,6 @@
 package com.tma.orderservice.controller;
 
-import com.tma.common.dto.user.UserDto;
+import com.tma.commonservice.dto.user.UserDto;
 import com.tma.orderservice.client.UserServiceClient;
 import com.tma.orderservice.dto.OrderRequest;
 import com.tma.orderservice.service.OrderService;

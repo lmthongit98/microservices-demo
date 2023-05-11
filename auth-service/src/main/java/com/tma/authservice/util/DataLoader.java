@@ -1,7 +1,7 @@
 package com.tma.authservice.util;
 
 import com.tma.authservice.repository.UserRepository;
-import com.tma.common.entity.User;
+import com.tma.commonservice.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;

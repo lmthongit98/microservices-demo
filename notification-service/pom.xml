@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.tma</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>common-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <exclusions>
                 <exclusion>

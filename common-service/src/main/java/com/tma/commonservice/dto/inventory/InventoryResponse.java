@@ -1,4 +1,4 @@
-package com.tma.common.dto.inventory;
+package com.tma.commonservice.dto.inventory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

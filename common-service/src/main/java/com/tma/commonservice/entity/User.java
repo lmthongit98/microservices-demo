@@ -1,4 +1,4 @@
-package com.tma.common.entity;
+package com.tma.commonservice.entity;
 
 import lombok.Data;
 

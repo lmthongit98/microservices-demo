@@ -1,10 +1,10 @@
 package com.tma.orderservice.service.impl;
 
-import com.tma.common.constants.EmailConstant;
-import com.tma.common.dto.email.EmailId;
-import com.tma.common.dto.inventory.InventoryResponse;
-import com.tma.common.dto.user.UserDto;
-import com.tma.common.service.EmailService;
+import com.tma.commonservice.constants.EmailConstant;
+import com.tma.commonservice.dto.email.EmailId;
+import com.tma.commonservice.dto.inventory.InventoryResponse;
+import com.tma.commonservice.dto.user.UserDto;
+import com.tma.commonservice.service.EmailService;
 import com.tma.orderservice.client.InventoryServiceClient;
 import com.tma.orderservice.dto.OrderEmailTemplate;
 import com.tma.orderservice.dto.OrderLineItemsDto;

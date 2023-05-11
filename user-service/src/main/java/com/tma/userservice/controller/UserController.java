@@ -1,7 +1,7 @@
 package com.tma.userservice.controller;
 
-import com.tma.common.dto.user.UserDto;
-import com.tma.common.entity.User;
+import com.tma.commonservice.dto.user.UserDto;
+import com.tma.commonservice.entity.User;
 import com.tma.userservice.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

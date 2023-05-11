@@ -1,6 +1,6 @@
 package com.tma.inventoryservice.controller;
 
-import com.tma.common.dto.inventory.InventoryResponse;
+import com.tma.commonservice.dto.inventory.InventoryResponse;
 import com.tma.inventoryservice.service.InventoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

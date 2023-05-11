@@ -1,4 +1,4 @@
-package com.tma.common.dto.email;
+package com.tma.commonservice.dto.email;
 
 
 public interface MessageTemplate {

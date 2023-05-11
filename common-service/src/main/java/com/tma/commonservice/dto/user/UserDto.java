@@ -1,4 +1,4 @@
-package com.tma.common.dto.user;
+package com.tma.commonservice.dto.user;
 
 import lombok.Data;
 

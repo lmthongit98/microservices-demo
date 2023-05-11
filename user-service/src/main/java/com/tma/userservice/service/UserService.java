@@ -1,10 +1,10 @@
 package com.tma.userservice.service;
 
-import com.tma.common.constants.EmailConstant;
-import com.tma.common.dto.email.EmailId;
-import com.tma.common.dto.user.UserDto;
-import com.tma.common.entity.User;
-import com.tma.common.service.EmailService;
+import com.tma.commonservice.constants.EmailConstant;
+import com.tma.commonservice.dto.email.EmailId;
+import com.tma.commonservice.dto.user.UserDto;
+import com.tma.commonservice.entity.User;
+import com.tma.commonservice.service.EmailService;
 import com.tma.userservice.email.UserRegisterEmailTemplate;
 import com.tma.userservice.exception.BadRequestException;
 import com.tma.userservice.exception.ResourceNotFoundException;

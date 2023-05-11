@@ -14,8 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
-@EntityScan("com.tma.common")
-@ComponentScan({"com.tma.common", "com.tma.userservice"})
+@EntityScan("com.tma.commonservice")
+@ComponentScan({"com.tma.commonservice", "com.tma.userservice"})
 public class UserServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserServiceApplication.class, args);

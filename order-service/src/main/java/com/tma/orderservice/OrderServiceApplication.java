@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScans;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
-@ComponentScan({"com.tma.common", "com.tma.orderservice"})
+@ComponentScan({"com.tma.commonservice", "com.tma.orderservice"})
 public class OrderServiceApplication {
 
 	public static void main(String[] args) {

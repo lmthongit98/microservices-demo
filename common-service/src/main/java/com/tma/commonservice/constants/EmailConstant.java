@@ -1,4 +1,4 @@
-package com.tma.common.constants;
+package com.tma.commonservice.constants;
 
 public class EmailConstant {
     public static final String NO_REPLY = "lmthong98@gmail.com";

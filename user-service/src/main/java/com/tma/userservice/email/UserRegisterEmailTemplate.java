@@ -1,7 +1,7 @@
 package com.tma.userservice.email;
 
-import com.tma.common.dto.email.EmailTemplate;
-import com.tma.common.dto.user.UserDto;
+import com.tma.commonservice.dto.email.EmailTemplate;
+import com.tma.commonservice.dto.user.UserDto;
 import lombok.Getter;
 import lombok.Setter;
 

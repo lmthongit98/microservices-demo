@@ -1,6 +1,6 @@
 package com.tma.orderservice.service;
 
-import com.tma.common.dto.user.UserDto;
+import com.tma.commonservice.dto.user.UserDto;
 import com.tma.orderservice.dto.OrderRequest;
 
 public interface OrderService {
