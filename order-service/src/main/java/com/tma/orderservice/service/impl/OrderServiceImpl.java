@@ -42,12 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
         // Call inventory service, and place order if product is in stock
         List<InventoryResponse> inventoryResponses;
-        try {
-            inventoryResponses = inventoryServiceClient.isInStock(skuCodes);
-        } catch (Exception e) {
-            log.error("Getting exception while calling inventory api", e);
-            throw e;
-        }
+        inventoryResponses = inventoryServiceClient.isInStock(skuCodes);
         log.info("Inventory check is: {}", inventoryResponses);
         boolean allProductsInStock = inventoryResponses.stream().allMatch(InventoryResponse::isInStock);
         if (skuCodes.size() != inventoryResponses.size() || !allProductsInStock) {
